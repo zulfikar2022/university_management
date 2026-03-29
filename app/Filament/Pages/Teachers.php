@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
 use BackedEnum;
 use Filament\Pages\Page;
@@ -11,6 +12,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\ViewAction;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Tables\Columns\ImageColumn;
@@ -34,6 +36,7 @@ class Teachers extends Page implements HasActions, HasSchemas, HasTable
             ->query(User::query()->whereHas('roles', function ($query) {
                 $query->where('name', 'Teacher');
             }))
+
             ->columns([
                 ImageColumn::make('profile_image')
                     ->disk('public')
@@ -51,7 +54,9 @@ class Teachers extends Page implements HasActions, HasSchemas, HasTable
                 // ...
             ])
             ->recordActions([
-                // ...
+                ViewAction::make()
+                    ->label('View')
+                    ->url(fn ($record): string => UserResource::getUrl('view', ['record' => $record]))
             ])
             ->toolbarActions([
                 // ...

@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -51,6 +52,7 @@ class UsersTable
             ])
             ->recordActions([
                 // EditAction::make(),
+                ViewAction::make()
             ])
             ->toolbarActions([
                 // BulkActionGroup::make([

@@ -1,5 +1,5 @@
-Md. Kamran Ahmed
-Section Officer
-kamranstt73@gmail.com
-+8801716790921
-
+What happening is, 
+I have users table and I am showing them into the users navigation item and also 
+I have create some more navigation items like Teachers, Studnets and Hall Staff all of them 
+are users. When I am calling the ViewAction::make() from the users navigation item then it is
+opening into a new page but when I'm calling this action into other pages table's Row action then it is showing modal. This is what happening. I want to open the new page for all the navigation item I created using the command of creating page. 

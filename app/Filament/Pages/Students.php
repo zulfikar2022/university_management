@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
 use BackedEnum;
 use Filament\Pages\Page;
@@ -9,6 +10,7 @@ use Filament\Support\Icons\Heroicon;
 use UnitEnum;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\ViewAction;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Tables\Columns\ImageColumn;
@@ -51,7 +53,9 @@ class Students extends Page implements HasActions, HasSchemas, HasTable
                 // ...
             ])
             ->recordActions([
-                // ...
+                ViewAction::make()
+                    ->label('View')
+                    ->url(fn ($record): string => UserResource::getUrl('view', ['record' => $record]))
             ])
             ->toolbarActions([
                 // ...
