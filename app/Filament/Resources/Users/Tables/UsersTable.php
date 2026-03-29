@@ -51,7 +51,7 @@ class UsersTable
                 //
             ])
             ->recordActions([
-                // EditAction::make(),
+                EditAction::make(),
                 ViewAction::make()
             ])
             ->toolbarActions([
