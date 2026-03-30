@@ -35,9 +35,9 @@ class Course extends Model
         return $this->hasMany(ReferenceBook::class);
     }
 
-    public function courseLearningOutcomes()
+    public function courseLearningOutcome()
     {
-        return $this->hasMany(CourseLearningOutcome::class);
+        return $this->hasOne(CourseLearningOutcome::class);
     }
 
     public function weeklyLessonPlans()
@@ -45,9 +45,9 @@ class Course extends Model
         return $this->hasMany(WeeklyLessonPlan::class);
     }
 
-    public function courseObjectives()
+    public function courseObjective()
     {
-        return $this->hasMany(CourseObjective::class);
+        return $this->hasOne(CourseObjective::class);
     }
 
 

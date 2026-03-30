@@ -137,7 +137,7 @@ class UserInfolist
                         $livewire->js('window.location.reload()');
                     }),
                 ])
-                // ->visible(fn ($record) => $record->roles->pluck('name')->contains('Student'))
+
                 ->schema([
                     Group::make()
                         ->visible(fn ($record) => $record->roles->pluck('name')->contains('Student'))

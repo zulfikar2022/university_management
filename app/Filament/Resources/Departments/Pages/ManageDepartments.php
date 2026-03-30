@@ -1,22 +1,24 @@
 <?php
 
-namespace App\Filament\Resources\Faculties\Pages;
+namespace App\Filament\Resources\Departments\Pages;
 
-use App\Filament\Resources\Faculties\FacultyResource;
+use App\Filament\Resources\Departments\DepartmentResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ManageRecords;
 use Filament\Support\Icons\Heroicon;
 
-class ManageFaculties extends ManageRecords
+class ManageDepartments extends ManageRecords
 {
-    protected static string $resource = FacultyResource::class;
+    protected static string $resource = DepartmentResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             CreateAction::make()
-                ->label('Add Faculty')
+                ->label('Add Department')
                 ->icon(Heroicon::Plus),
         ];
     }
+
+
 }

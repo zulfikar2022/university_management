@@ -21,7 +21,7 @@ class FacultyResource extends Resource
 {
     protected static ?string $model = Faculty::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
 
     protected static string|UnitEnum|null $navigationGroup = 'Academia Management';
     protected static ?int $navigationSort = 6;
