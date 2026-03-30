@@ -2,14 +2,10 @@
 
 namespace App\Filament\Resources\Buildings\RelationManagers;
 
-use Filament\Actions\AssociateAction;
-use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\DissociateAction;
-use Filament\Actions\DissociateBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
@@ -19,6 +15,11 @@ use Filament\Tables\Table;
 class FloorsRelationManager extends RelationManager
 {
     protected static string $relationship = 'floors';
+
+    public function isReadOnly(): bool
+    {
+        return false;
+    }
 
     public function form(Schema $schema): Schema
     {
@@ -32,6 +33,27 @@ class FloorsRelationManager extends RelationManager
                     ->numeric(),
                 TextInput::make('usage')
                     ->required(),
+
+                Repeater::make('rooms')
+                    ->relationship()
+                    ->schema([
+                        TextInput::make('room_number')
+                            ->numeric()
+                            ->required(),
+                        TextInput::make('room_type')
+                            ->required()
+                            ->label('Room Type (e.g., Lab, Lecture)'),
+                        TextInput::make('room_size')
+                            ->required()
+                            ->label('Room Size ')
+                            ->numeric(),
+                        TextInput::make('available_seats')
+                            ->label('Available Seats')
+                            ->numeric()
+                    ])
+                    ->columns(2) // Puts the room inputs side-by-side
+                    ->addActionLabel('Add Room')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -46,34 +68,34 @@ class FloorsRelationManager extends RelationManager
                 TextColumn::make('total_rooms')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('rooms_count')
+                    ->counts('rooms')
+                    ->label('Rooms Added')
+                    ->sortable(),
                 TextColumn::make('usage')
                     ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
-                AssociateAction::make(),
+                CreateAction::make()
+                    ->label('Add Floor')
+                    ->icon('heroicon-o-plus')
+                    ->createAnother(false),
             ])
             ->recordActions([
                 EditAction::make(),
-                DissociateAction::make(),
+                // DissociateAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DissociateBulkAction::make(),
-                    DeleteBulkAction::make(),
-                ]),
+                // BulkActionGroup::make([
+                //     DissociateBulkAction::make(),
+                //     DeleteBulkAction::make(),
+                // ]),
             ]);
     }
+
+
 }
