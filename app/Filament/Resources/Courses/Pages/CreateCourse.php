@@ -13,4 +13,13 @@ class CreateCourse extends CreateRecord
     {
         return $this->getResource()::getUrl('view', ['record' => $this->record]);
     }
+
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getCreateFormAction(),
+            // $this->getCreateAnotherFormAction(), <-- By omitting this, the button disappears!
+            $this->getCancelFormAction(),
+        ];
+    }
 }

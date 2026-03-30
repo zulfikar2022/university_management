@@ -16,7 +16,8 @@ class ManageDepartments extends ManageRecords
         return [
             CreateAction::make()
                 ->label('Add Department')
-                ->icon(Heroicon::Plus),
+                ->icon(Heroicon::Plus)
+                ->createAnother(false),
         ];
     }
 

@@ -16,7 +16,8 @@ class ManageFaculties extends ManageRecords
         return [
             CreateAction::make()
                 ->label('Add Faculty')
-                ->icon(Heroicon::Plus),
+                ->icon(Heroicon::Plus)
+                ->createAnother(false),
         ];
     }
 }

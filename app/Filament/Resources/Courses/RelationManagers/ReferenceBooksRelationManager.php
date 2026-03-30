@@ -54,13 +54,16 @@ class ReferenceBooksRelationManager extends RelationManager
                     ->searchable(),
                 TextColumn::make('SI_No')
                     ->label('Serial Number')
+                    ->searchable()
 
             ])
             ->filters([
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->label('Add Book'),
+                    ->label('Add Book')
+                    ->icon('heroicon-o-plus')
+                    ->createAnother(false),
 
             ])
             ->recordActions([

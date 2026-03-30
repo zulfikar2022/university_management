@@ -15,7 +15,10 @@ class ManageDesignations extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+                ->label('Add Designation')
+                ->icon('heroicon-o-plus')
+                ->createAnother(false),
         ];
     }
 }
